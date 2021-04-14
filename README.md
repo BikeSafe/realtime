@@ -1,19 +1,34 @@
-# Realtime
+# Realtime Services for BikeSafe
 
-To start your Phoenix server:
+## Using docker
 
+### Docker images used
+
+- [elixir:latest](https://hub.docker.com/_/elixir)
+- [postgis/postgis:latest](https://hub.docker.com/r/postgis/postgis)
+
+### Initialize containers
+
+The running service requires ports `localhost:4000` and `localhost:5432`
+
+```sh
+> cd path/to/realtime
+> docker-compose up
+```
+
+## Running localy
+
+### Dependencies
+
+- Elixir
+- PostgreSQL
+- PostGIS extensions
+
+### To start your Phoenix server:
+
+  * Change the `hostname` prop at `realtime/config/dev.ex` to be `localhost`
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+Now send API requests at `localhost:4000/api/interest_point` regardless of the method used
