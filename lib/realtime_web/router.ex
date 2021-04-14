@@ -18,12 +18,12 @@ defmodule RealtimeWeb.Router do
 
     get "/", PageController, :index
   end
-  
+
   scope "/api", RealtimeWeb do
     pipe_through :api
 
     get "/interest_point", InterestPointController, :get_in_radius
-    
+
     post "/interest_point", InterestPointController, :create
   end
 

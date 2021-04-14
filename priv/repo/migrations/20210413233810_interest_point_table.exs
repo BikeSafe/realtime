@@ -14,7 +14,6 @@ defmodule Realtime.Repo.Migrations.InterestPointTable do
     execute("CREATE INDEX interest_point_location_index on interest_point USING gist (location)")
 
     flush()
-
   end
 
   def down do

@@ -30,9 +30,8 @@ defmodule Realtime.InterestPoints do
   end
 
   def create_point(coords, type) do
-  
     location = %Geo.Point{coordinates: coords, srid: 4326}
-    
-    Repo.insert %InterestPoint{event_type: type, location: location}
+
+    Repo.insert(%InterestPoint{event_type: type, location: location})
   end
 end
