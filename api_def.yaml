@@ -1,0 +1,92 @@
+swagger: "2.0"
+info:
+  description: "Realtime services for Bikesafe"
+  version: "0.1.0"
+  title: "Realtime"
+  contact:
+    email: "ccgarciab@unal.edu.co"
+#host: ""
+basePath: "/api"
+tags:
+- name: "consumers"
+  description: "Consumers of GIS realtime services"
+schemes:
+#- "https"
+- "http"
+paths:
+  /interest_point:
+    post:
+      tags:
+      - "consumers"
+      summary: "Create interest point"
+      description: "Creates a point with a type given by an integer, and coordinates"
+      operationId: "createInterestPoint"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "type"
+        in: "query"
+        description: "Type of interest identifier"
+        required: true
+        type: "integer"
+      - name: "lng"
+        in: "query"
+        description: "Longitude coordinate"
+        required: true
+        type: number
+      - name: "lat"
+        in: "query"
+        description: "Latitude coordinate"
+        required: true
+        type: number
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/InterestPoint"
+    get:
+      tags:
+      - "consumers"
+      summary: "Find nearby points"
+      description: "Fetch interest points in a given radius, given central interest point identifier"
+      operationId: "fetchEnterprises"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "Identifier of central point"
+        required: true
+        type: "integer"
+      - name: "radius"
+        in: "query"
+        description: "Search radius in meters"
+        required: true
+        type: number
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/InterestPoint"
+
+definitions:
+  InterestPoint:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      event_type:
+        type: "integer"
+      location:
+        type: "object"
+        properties:
+          coordinates:
+          type: array
+          items:
+            type: integer
