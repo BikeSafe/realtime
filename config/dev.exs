@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :realtime, Realtime.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "fwO8tOXbIBMBB2MG",
   database: "realtime_dev",
-  hostname: "postgres",
+  url: "postgresql://postgres:fwO8tOXbIBMBB2MG@cristian-db.c5jitbjamyxn.us-east-1.rds.amazonaws.com/realtime_dev",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10,
   types: Realtime.PostgresTypes
