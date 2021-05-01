@@ -1,15 +1,5 @@
 use Mix.Config
 
-# Configure your database
-config :realtime, Realtime.Repo,
-  username: "postgres",
-  password: "fwO8tOXbIBMBB2MG",
-  database: "realtime_dev",
-  url: "postgresql://postgres:fwO8tOXbIBMBB2MG@cristian-db.c5jitbjamyxn.us-east-1.rds.amazonaws.com/realtime_dev",
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10,
-  types: Realtime.PostgresTypes
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -67,3 +57,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+import_config "dev.secret.exs"
