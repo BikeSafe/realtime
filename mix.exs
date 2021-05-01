@@ -46,9 +46,7 @@ defmodule Realtime.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:geo, ">= 3.1.0"},
-      {:geo_postgis, ">= 3.1.0"},
-      {:absinthe, ">= 1.5.0"},
-      {:absinthe_plug, ">= 1.5.0"},
+      {:geo_postgis, ">= 3.1.0"}
     ]
   end
 
