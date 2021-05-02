@@ -3,14 +3,12 @@ defmodule RealtimeWeb.InterestPointController do
 
   alias Realtime.InterestPoints
 
-  def get_in_radius(conn, %{"id" => id, "radius" => radius}) do
-    results =
-      case InterestPoints.get_points_in_radius(iparse(id), iparse(radius)) do
-        {:ok, res} -> res |> Enum.map(&(Map.from_struct(&1) |> Map.drop([:__meta__])))
-        {:error, :not_found} -> %{error: "point with given id not found"}
-      end
+  def get_in_radius(conn, %{"lat" => lat, "lng" => lng, "radius" => radius}) do
+    coords = {fparse(lng), fparse(lat)}
 
-    json(conn, results)
+    result = InterestPoints.get_points_in_radius(coords, fparse(radius))
+
+    json(conn, result)
   end
 
   def get_in_radius(conn, _) do
