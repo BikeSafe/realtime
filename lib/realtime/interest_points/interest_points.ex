@@ -4,14 +4,12 @@ defmodule Realtime.InterestPoints do
   import Geo.PostGIS
 
   def get_points_in_radius(coords, rad) do
-
     center = %Geo.Point{coordinates: coords, srid: 4326}
 
-    query = from point in "interest_point",
-            where: st_dwithin(^center, point.location, ^rad),
-            select: %{id: point.id,
-                      event_type: point.event_type,
-                      location: point.location}
+    query =
+      from point in "interest_point",
+        where: st_dwithin(^center, point.location, ^rad),
+        select: %{id: point.id, event_type: point.event_type, location: point.location}
 
     Repo.all(query)
   end
