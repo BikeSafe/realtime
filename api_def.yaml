@@ -50,18 +50,23 @@ paths:
       tags:
       - "consumers"
       summary: "Find nearby points"
-      description: "Fetch interest points in a given radius, given central interest point identifier"
+      description: "Fetch interest points in a given radius, given a central point's coordinates"
       operationId: "fetchEnterprises"
       consumes:
       - "application/json"
       produces:
       - "application/json"
       parameters:
-      - name: "id"
+      - name: "lng"
         in: "query"
-        description: "Identifier of central point"
+        description: "Longitude coordinate"
         required: true
-        type: "integer"
+        type: number
+      - name: "lat"
+        in: "query"
+        description: "Latitude coordinate"
+        required: true
+        type: number
       - name: "radius"
         in: "query"
         description: "Search radius in meters"

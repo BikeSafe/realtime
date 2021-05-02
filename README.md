@@ -1,15 +1,42 @@
 # Realtime Services for BikeSafe
 
+## General configuration
+
+Put your sensitive configuration in the `config/{environment}.secret.exs` file.
+
+As an example:
+
+```elixir
+import Config
+
+# Configure your database
+config :realtime, Realtime.Repo,
+  username: "username",
+  password: "password",
+  database: "realtime_dev",
+  url:
+    "postgresql://username:password@dbidentifier.123abc.us-east-1.rds.amazonaws.com/realtime_dev",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10,
+  types: Realtime.PostgresTypes
+
+```
+
 ## Using docker
 
 ### Docker images used
 
 - [elixir:latest](https://hub.docker.com/_/elixir)
+
+### Optional docker images
+
+An image with a full instalation of `postgres` and it's extensions is available. To use it, it should be added to the `docker-compose.yml` file, and the `elixir` image should be made to depend on it. The `elixir` configuration should use the `hostname` property instead of `url`.
+
 - [postgis/postgis:latest](https://hub.docker.com/r/postgis/postgis)
 
 ### Initialize containers
 
-The running service requires ports `localhost:4000` and `localhost:5432`
+The running service requires port `localhost:4000`
 
 ```sh
 > cd path/to/realtime
@@ -42,6 +69,7 @@ Now send API requests at `localhost:4000/api/interest_point` regardless of the m
 
 - Endpoint 2:
   * Method: `GET`
-  * Param 1: id: integer
-  * Param 2: radius: number
-  * Example: `http://localhost:4000/api/interest_point?id=10&radius=1000`
+  * Param 1: lat: number
+  * Param 2: lng: number
+  * Param 3: radius: number
+  * Example: `http://localhost:4000/api/interest_point?lng=80.1&lat=80.1&radius=1000`
